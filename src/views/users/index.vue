@@ -73,7 +73,7 @@
           limit: 10
         },
         list: '',
-        url: require("../../assets/images/英雄联盟.jpg"),
+        url: '',
         listLoading: true,
       }
     },
@@ -106,7 +106,6 @@
             if (vm.list[i].gpic != null && vm.list[i].gpic != '') {
               chagegpic = vm.list[i].gpic
               // console.log("赋值成功" + chagegpic);
-              vm.list[i].gpic = require("../../assets/images/" + chagegpic);
               // console.log(vm.list[i].gpic + "   " + vm.list.length)
             }
           }
