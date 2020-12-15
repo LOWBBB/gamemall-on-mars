@@ -49,8 +49,8 @@
       </el-form-item>
       <el-form-item>
       <template>
-        <el-radio v-model="radio" label="1">玩家</el-radio>
-        <el-radio v-model="radio" label="2">商家</el-radio>
+        <el-radio v-model="loginForm.radio" label="1">玩家</el-radio>
+        <el-radio v-model="loginForm.radio" label="2">商家</el-radio>
       </template>
       </el-form-item>
       <el-button
@@ -93,7 +93,8 @@
       return {
         loginForm: {
           username: 'admin',
-          password: '111111'
+          password: '111111',
+          radio:'1'
         },
         radio: '1',
         loginRules: {
@@ -131,7 +132,7 @@
             this.loading = true
             var role = this.radio
             console.log('radio ---------' + this.radio)
-            if (role === '1'){
+            // if (role === '1'){
               window.alert("user role ---" + role);
               this.$store.dispatch('user/login', this.loginForm).then(() => {
                 this.$router.push({path: this.redirect || '/'})
@@ -139,15 +140,15 @@
               }).catch(() => {
                 this.loading = false
               })
-            } else if (role === '2'){
-              window.alert("merchant role ---" + role);
-              this.$store.dispatch('merchant/login', this.loginForm).then(() => {
-                this.$router.push({path: this.redirect || '/'})
-                this.loading = false
-              }).catch(() => {
-                this.loading = false
-              })
-            }
+            // } else if (role === '2'){
+            //   window.alert("merchant role ---" + role);
+            //   this.$store.dispatch('merchant/login', this.loginForm).then(() => {
+            //     this.$router.push({path: this.redirect || '/'})
+            //     this.loading = false
+            //   }).catch(() => {
+            //     this.loading = false
+            //   })
+            // }
 
           } else {
             console.log('error submit!!')
