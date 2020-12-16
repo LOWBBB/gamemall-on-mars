@@ -84,6 +84,7 @@ export default {
 
     onSubmit() {
       var vm = this
+      console.log("buygame ------- userid" + sessionStorage.getItem("id"))
       this.axios({
         method: 'POST',
         url: '/gameController/game/update',
