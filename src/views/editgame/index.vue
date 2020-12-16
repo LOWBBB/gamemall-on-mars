@@ -22,7 +22,6 @@
         <el-col :span="11">
           <el-date-picker v-model="game.gtime" type="date" placeholder="Pick a date" style="width: 100%;" />
         </el-col>
-        </el-col>
       </el-form-item>
       <el-form-item label="游戏评分">
         <el-input v-model="game.gsore" />
@@ -144,7 +143,7 @@ export default {
         }],
         data: vm.game
       }).then(function(resp) {
-        vm.$message('修改成功!')
+        vm.$message.success('修改成功!')
         console.log(resp)
         vm.$router.push('/example/games')
       })

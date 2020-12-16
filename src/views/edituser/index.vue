@@ -9,20 +9,24 @@
         </el-upload>
       </el-form-item> -->
       <el-form-item label="用户名">
-        <el-input v-model="user.uname" />
+        <el-input v-model="user.uname"/>
       </el-form-item>
       <el-form-item label="用户性别">
-        <el-input v-model="user.usex" />
+        <el-input v-model="user.usex"/>
       </el-form-item>
       <el-form-item label="用户生日">
         <el-col :span="11">
-          <el-date-picker v-model="user.ubirth" type="date"
-value-format="yyyy-MM-dd" placeholder="Pick a date" style="width: 100%;" />
-        </el-col>
+          <el-date-picker
+            v-model="user.ubirth"
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="Pick a date"
+            style="width: 100%;"
+          />
         </el-col>
       </el-form-item>
       <el-form-item label="用户邮箱">
-        <el-input v-model="user.uemail" />
+        <el-input v-model="user.uemail"/>
       </el-form-item>
       <!-- <el-form-item label="用户密码">
         <el-input v-model="user.loginpwd" />
@@ -80,37 +84,35 @@ value-format="yyyy-MM-dd" placeholder="Pick a date" style="width: 100%;" />
 </template>
 
 <script>
+  import request from '../../utils/request'
+
   export default {
     data() {
       return {
         user: {
-          "uid": null,
-          "scid": "80006",
-          "uname": "怡宝",
-          "usex": "女",
-          "ubirth": null,
-          "umoney": 300,
-          "uemail": "123456789@qq.com",
-          "utime": null,
-          "ustate": "未登录",
-          "salt": null,
-          "loginpwd": "123",
-          "paypwd": "123",
-          "isdelete": null,
-          "creatdate": null,
-          "utp": null,
-          "indents": null,
+          'uid': '',
+          'scid': '80006',
+          'uname': '怡宝',
+          'usex': '女',
+          'ubirth': '2020-01-02',
+          'umoney': 300,
+          'uemail': '123456789@qq.com',
+          'utime': '2020-01-02',
+          'ustate': '未登录',
+          'salt': '',
+          'loginpwd': '123',
+          'paypwd': '123',
+          'isdelete': 0,
+          'creatdate': '2020-01-02',
           // "commentdetails": [null],
           // "accountRoles": [null],
-          "isDelete": null,
-          "locked": null,
-        },
+        }
         // 上传图片的URL地址
         // uploadURL: 'http://localhost:9090/userController/upload',
       }
     },
     created() {
-      this.fetchuserDataById();
+      this.fetchuserDataById()
     },
     methods: {
       // 上传方法
@@ -123,11 +125,11 @@ value-format="yyyy-MM-dd" placeholder="Pick a date" style="width: 100%;" />
       },
       // 处理图片预览效果
       handlePreview(file) {
-        console.log(file);
+        console.log(file)
       },
       fetchuserDataById() {
-        var uid = this.$route.params.uid;
-        var vm = this;
+        var uid = this.$route.params.uid
+        var vm = this
         this.axios({
           method: 'GET',
           url: '/userController/user/' + uid + '/json'
@@ -138,37 +140,30 @@ value-format="yyyy-MM-dd" placeholder="Pick a date" style="width: 100%;" />
       },
 
       onSubmit() {
-        var vm = this;
+        var vm = this
+        var params = new URLSearchParams()
+        params.append('uid', vm.user.uid)
+        params.append('uname', vm.user.uname)
+        params.append('usex', vm.user.usex)
+        params.append('ubirth', vm.user.ubirth)
+        params.append('uemail', vm.user.uemail)
         this.axios({
+          headers: {'content-type': 'application/x-www-form-urlencoded'},
           method: 'POST',
           url: '/userController/user/put',
-          transformRequest: [function(data) {
-            // console.log(data)
-            console.log(data.uid)
-            // console.log(data.gtime)
-            // data.ubirth = vm.$moment(data.ubirth).format('YYYY-MM-DD h:mm:ss');
-            data.utime = vm.$moment(new Date()).format('YYYY-MM-DD h:mm:ss');
-            data.creatdate = vm.$moment(new Date()).format('YYYY-MM-DD h:mm:ss');
-            // console.log("user.createDate" + data.creatdate);
-            // console.log(data.gtime)
-            console.log("********************vm.user********************")
-            console.log(vm.user)
-            console.log("********************vm.user********************")
-            console.log(data)
-            return vm.$qs.stringify(data)
-          }],
-          data: vm.user
+          data: params
         }).then(function(resp) {
-          if (resp.data.code == '200'){
+          if (resp.data.code == '200') {
             vm.$message({
               message: '修改成功！',
               type: 'success'
-            });
-            vm.$router.push("/example/users");
+            })
+            vm.$router.push('/example/users')
           }
-          console.log(resp);
-
+          console.log(resp)
+          console.log('---==='+vm.user)
         })
+
       }
     }
   }

@@ -7,7 +7,8 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
-    roles: []
+    roles: [],
+    id: ''
   }
 }
 
@@ -28,6 +29,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_ID: (state, id) => {
+    state.id = id
   }
 }
 
@@ -35,10 +39,11 @@ const actions = {
   // user login
   login({ commit }, userInfo) {
     const { username, password, radio } = userInfo
-    console.log("radio --++" + radio + " " + username + " " + password)
+    console.log('radio --++' + radio + ' ' + username + ' ' + password)
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password, radio:radio }).then(response => {
+      login({ username: username.trim(), password: password, radio: radio }).then(response => {
         const { data } = response
+        commit('SET_ID', data.id)
         commit('SET_TOKEN', data.token)
         setToken(data.token)
         resolve()
@@ -58,7 +63,7 @@ const actions = {
           return reject('验证失败，请重新登录')
         }
 
-        const {roles, name, avatar } = data
+        const { roles, name, avatar } = data
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
@@ -101,5 +106,4 @@ export default {
   mutations,
   actions
 }
-
 
