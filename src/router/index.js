@@ -36,49 +36,63 @@ export const constantRoutes = [{
   hidden: true
 },
 
-{
-  path: '/',
-  component: Layout,
-  redirect: '/dashboard',
-  children: [{
-    path: 'dashboard',
-    name: 'Dashboard',
-    component: () => import('@/views/dashboard/index'),
-    meta: {
-      title: '后台管理系统',
-      icon: 'dashboard'
-    }
-  }]
-},
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [{
+      path: 'dashboard',
+      name: 'Dashboard',
+      component: () => import('@/views/dashboard/index'),
+      meta: {
+        title: '后台管理系统',
+        icon: 'dashboard'
+      }
+    }]
+  },
 
-{
-  path: '/editgame',
-  component: Layout,
-  hidden: true,
-  children: [{
-    path: 'index/:gid',
-    name: 'editgame',
-    component: () => import('@/views/editgame/index'),
-    meta: {
-      title: '编辑游戏',
-      icon: 'form'
-    }
-  }]
-},
-{
-  path: '/addgame',
-  component: Layout,
-  hidden: true,
-  children: [{
-    path: 'index',
-    name: 'addgame',
-    component: () => import('@/views/addgame/index'),
-    meta: {
-      title: '添加游戏',
-      icon: 'form'
-    }
-  }]
-},
+  {
+    path: '/editgame',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index/:gid',
+      name: 'editgame',
+      component: () => import('@/views/editgame/index'),
+      meta: {
+        title: '编辑游戏',
+        icon: 'form'
+      }
+    }]
+  },
+  {
+    path: '/addgame',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index',
+      name: 'addgame',
+      component: () => import('@/views/addgame/index'),
+      meta: {
+        title: '添加游戏',
+        icon: 'form'
+      }
+    }]
+  },
+  {
+    path: '/buygame',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index/:gid',
+      name: 'buygame',
+      component: () => import('@/views/buygame/index'),
+      meta: {
+        title: '购买游戏',
+        icon: 'form'
+      }
+    }]
+  },
 // {
 //   path: '/example',
 //   component: Layout,
@@ -99,34 +113,34 @@ export const constantRoutes = [{
 //   }
 //   ]
 // },
-{
-  path: '/edituser',
-  component: Layout,
-  hidden: true,
-  children: [{
-    path: 'index/:uid',
-    name: 'edituser',
-    component: () => import('@/views/edituser/index'),
-    meta: {
-      title: '编辑用户',
-      icon: 'form'
-    }
-  }]
-},
-{
-  path: '/adduser',
-  component: Layout,
-  hidden: true,
-  children: [{
-    path: 'index',
-    name: 'adduser',
-    component: () => import('@/views/adduser/index'),
-    meta: {
-      title: '添加用户',
-      icon: 'form'
-    }
-  }]
-},
+  {
+    path: '/edituser',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index/:uid',
+      name: 'edituser',
+      component: () => import('@/views/edituser/index'),
+      meta: {
+        title: '编辑用户',
+        icon: 'form'
+      }
+    }]
+  },
+  {
+    path: '/adduser',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index',
+      name: 'adduser',
+      component: () => import('@/views/adduser/index'),
+      meta: {
+        title: '添加用户',
+        icon: 'form'
+      }
+    }]
+  },
 // {
 //   path: '/mall',
 //   component: Layout,
@@ -150,17 +164,17 @@ export const constantRoutes = [{
 //   ]
 // },
 
-{
-  path: '/404',
-  component: () => import('@/views/404'),
-  hidden: true
-},
+  {
+    path: '/404',
+    component: () => import('@/views/404'),
+    hidden: true
+  },
 // 404 page must be placed at the end !!!
-{
-  path: '*',
-  redirect: '/404',
-  hidden: true
-}
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
+  }
 ]
 /**
  * 动态路由

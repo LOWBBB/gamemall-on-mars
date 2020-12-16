@@ -126,9 +126,11 @@ export default {
     buyGame(item) {
       // 1.进入改游戏购买页面 2.拿到userId
       var vm = this
-      console.log('userId -----------' + vm.userId)
+      vm.userId = sessionStorage.getItem("id")
+      console.log('userId -----------' + sessionStorage.getItem("id"))
 
       console.log('item -----------' + item.gid)
+      this.$router.push("/buygame/index/" + item.gid);
     }
   }
 }
