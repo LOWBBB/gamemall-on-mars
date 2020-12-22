@@ -65,7 +65,7 @@ const actions = {
 
         const { roles, name, avatar, id } = data
         sessionStorage.setItem("id", id)
-        // console.log('userid +++++++' + id)
+        console.log('userid +++++++' + sessionStorage.getItem("id"))
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)

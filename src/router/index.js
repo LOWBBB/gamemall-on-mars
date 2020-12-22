@@ -233,6 +233,28 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/chargemoney',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'ChargeMoney',
+    meta: {
+      title: '用户充值',
+      icon: 'el-icon-s-help',
+      roles: ['user']
+    },
+
+    children: [
+      {
+        path: 'chargemoney',
+        name: 'Chargemoney',
+        component: () => import('@/views/chargemoney/index'),
+        meta: {
+          title: '用户充值'
+        }
+      }
+    ]
+  },
+  {
     path: '/mall',
     component: Layout,
     redirect: 'noRedirect',
