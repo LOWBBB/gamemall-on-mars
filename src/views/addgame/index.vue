@@ -14,13 +14,15 @@
       <el-form-item label="游戏价格">
         <el-input v-model="game.gprice" />
       </el-form-item>
+      <el-form-item label="商家id">
+        <el-input v-model="game.mcid" />
+      </el-form-item>
       <el-form-item label="游戏类型">
         <el-input v-model="game.gtype" />
       </el-form-item>
       <el-form-item label="游戏上架时间">
         <el-col :span="11">
           <el-date-picker v-model="game.gtime" type="date" placeholder="Pick a date" style="width: 100%;" />
-        </el-col>
         </el-col>
       </el-form-item>
       <el-form-item label="游戏评分">

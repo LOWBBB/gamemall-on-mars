@@ -10,7 +10,7 @@
     >
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">登录</h3>
       </div>
 
       <el-form-item prop="username">
@@ -61,10 +61,7 @@
       >登陆
       </el-button>
 
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
-      </div>
+
 
     </el-form>
   </div>
@@ -204,6 +201,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+  //$bg: #2d3a4b;
   $bg: #2d3a4b;
   $dark_gray: #889aa4;
   $light_gray: #eee;

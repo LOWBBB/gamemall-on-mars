@@ -45,7 +45,7 @@ export const constantRoutes = [{
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: {
-        title: '后台管理系统',
+        title: '游戏销售系统',
         icon: 'dashboard'
       }
     }]
@@ -200,15 +200,15 @@ export const asyncRoutes = [
         icon: 'game'
       }
     },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: {
-          title: 'Tree',
-          icon: 'tree'
-        }
-      }
+      // {
+      //   path: 'tree',
+      //   name: 'Tree',
+      //   component: () => import('@/views/tree/index'),
+      //   meta: {
+      //     title: 'Tree',
+      //     icon: 'tree'
+      //   }
+      // }
     ]
   },
   {
@@ -228,6 +228,27 @@ export const asyncRoutes = [
       meta: {
         title: '用户列表',
         icon: 'user'
+      }
+    }
+    ]
+  },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: {
+      title: '用户管理',
+      icon: 'el-icon-s-help',
+      roles: ['admin']
+    },
+    children: [{
+      path: 'merchants',
+      name: 'Merchants',
+      component: () => import('@/views/merchants'),
+      meta: {
+        title: '商家列表',
+        icon: 'merchant'
       }
     }
     ]
@@ -276,7 +297,38 @@ export const asyncRoutes = [
         }
       }
     ]
-  }]
+  },
+  // 商家游戏管理
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: {
+      title: '游戏管理',
+      icon: 'el-icon-s-help',
+      roles: ['merchant']
+    },
+    children: [{
+      path: 'merchantgame',
+      name: 'Merchantgame',
+      component: () => import('@/views/merchantgame/index'),
+      meta: {
+        title: '我的游戏列表',
+        icon: 'game'
+      }
+    },
+      // {
+      //   path: 'tree',
+      //   name: 'Tree',
+      //   component: () => import('@/views/tree/index'),
+      //   meta: {
+      //     title: 'Tree',
+      //     icon: 'tree'
+      //   }
+      // }
+    ]
+  },]
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({

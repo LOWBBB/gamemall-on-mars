@@ -15,6 +15,9 @@
       <el-form-item label="游戏价格">
         <el-input v-model="game.gprice" />
       </el-form-item>
+      <el-form-item label="商家id">
+        <el-input v-model="game.mcid" />
+      </el-form-item>
       <el-form-item label="游戏类型">
         <el-input v-model="game.gtype" />
       </el-form-item>
