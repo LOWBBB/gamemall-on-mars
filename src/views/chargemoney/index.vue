@@ -48,44 +48,17 @@
         console.log(file);
       },
       chargeMoney(){
+        var vm = this;
         console.log("id ---------------"+sessionStorage.getItem("id"))
         var uid = sessionStorage.getItem("id");
         this.axios({
           method: 'POST',
           url: '/userController/user/'+ uid +'/chargeMoney/'+this.money
         }).then(function(resp) {
+          console.log("chargemoney resp")
           console.log(resp)
-
-        })
-      },
-      onSubmit() {
-        var vm = this;
-        this.axios({
-          method: 'POST',
-          url: '/userController/user/post',
-          transformRequest: [function(data) {
-            console.log(data)
-            data.ubirth = vm.$moment(data.ubirth).format('YYYY-MM-DD');
-            data.utime = vm.$moment(new Date()).format('YYYY-MM-DD');
-            // data.createDate = vm.$moment(new Date()).format('YYYY-MM-DD');
-            data.createdate = vm.$moment(new Date()).format('YYYY-MM-DD');
-            console.log("data.createDate" + data.createDate + "    " + data.createdate);
-            // console.log(data.gtime)
-            // console.log(data)
-            return vm.$qs.stringify(data)
-          }],
-          data: vm.user
-        }).then(function(resp) {
-          console.log("add resp")
-          console.log(resp)
-          if (resp.data.code == '444') {
-            vm.$message.error('用户名重复!')
-          } else if (resp.data.code == '200') {
-            vm.$message({
-              message: '添加成功！',
-              type: 'success'
-            });
-            vm.$router.push("/example/users");
+          if (resp.data.code === 200) {
+            vm.$message.success('充值成功!')
           }
           // console.log(resp);
         })

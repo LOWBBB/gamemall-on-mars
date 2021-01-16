@@ -180,7 +180,21 @@ export const constantRoutes = [{
  * 动态路由
  */
 export const asyncRoutes = [
-
+  // 游客注册
+  {
+    path: '/example',
+    component: Layout,
+    children: [{
+      path: 'userRegister',
+      name: 'userRegister',
+      component: () => import('@/views/userRegister/index'),
+      meta: {
+        title: '游客注册',
+        icon: 'form',
+        roles: ['user', 'admin']
+      }
+    }]
+  },
   {
     path: '/example',
     component: Layout,

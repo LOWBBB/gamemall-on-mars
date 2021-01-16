@@ -85,9 +85,10 @@ export default {
     onSubmit() {
       var vm = this
       console.log("buygame ------- userid" + sessionStorage.getItem("id"))
+      var uid = sessionStorage.getItem("id")
       this.axios({
         method: 'POST',
-        url: '/gameController/game/update',
+        url: '/userController/user/'+ uid +'/buyGame',
         transformRequest: [function(data) {
           console.log(data)
           // console.log(data.gtime)
@@ -98,9 +99,14 @@ export default {
         }],
         data: vm.game
       }).then(function(resp) {
-        vm.$message.success('修改成功!')
+        if (resp.data.code === 4003){
+          vm.$message.warning(resp.data.msg)
+          vm.$router.push('/mall/goodsList')
+        } else {
+          vm.$message.success('购买成功!')
+          vm.$router.push('/mall/goodsList')
+        }
         console.log(resp)
-        vm.$router.push('/example/games')
       })
     }
   }

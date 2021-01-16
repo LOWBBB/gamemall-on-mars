@@ -101,7 +101,7 @@ export default {
       },
       loading: false,
       passwordType: 'password',
-      redirect: undefined
+      redirect: '/mall/goodsList'
     }
   },
   watch: {
@@ -136,15 +136,6 @@ export default {
           }).catch(() => {
             this.loading = false
           })
-          // } else if (role === '2'){
-          //   window.alert("merchant role ---" + role);
-          //   this.$store.dispatch('merchant/login', this.loginForm).then(() => {
-          //     this.$router.push({path: this.redirect || '/'})
-          //     this.loading = false
-          //   }).catch(() => {
-          //     this.loading = false
-          //   })
-          // }
         } else {
           console.log('error submit!!')
           return false
