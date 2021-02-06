@@ -2,37 +2,37 @@
   <div class="goods-list-container">
     <vab-query-form>
       <vab-query-form-right-panel :span="24">
-        <el-form ref="form" :model="queryForm" :inline="true" @submit.native.prevent>
-          <el-form-item>
-            <el-input v-model="queryForm.title" placeholder="商品名称" />
-          </el-form-item>
-          <el-form-item>
-            <el-button icon="el-icon-search" type="primary" native-type="submit" @click="handleQuery">
-              查询
-            </el-button>
-          </el-form-item>
-        </el-form>
+<!--        <el-form ref="form" :model="queryForm" :inline="true" @submit.native.prevent>-->
+<!--          <el-form-item>-->
+<!--            <el-input v-model="queryForm.title" placeholder="商品名称" />-->
+<!--          </el-form-item>-->
+<!--          <el-form-item>-->
+<!--            <el-button icon="el-icon-search" type="primary" native-type="submit" @click="handleQuery">-->
+<!--              查询-->
+<!--            </el-button>-->
+<!--          </el-form-item>-->
+<!--        </el-form>-->
       </vab-query-form-right-panel>
     </vab-query-form>
     <el-row :gutter="20">
       <el-col v-for="(item, index) in list" :key="index" :xs="24" :sm="8" :md="8" :lg="8" :xl="6">
-        <el-card :body-style="{ padding: '0px' }" shadow="hover">
+        <el-card :body-style="{ padding: '0px' }" shadow="hover" >
           <el-tooltip placement="top">
-            <div slot="content">{{ item.gtype }}<br>第二行信息</div>
-            <el-button>{{ item.gname }}</el-button>
+            <div slot="content">{{ item.gtype }}<br>{{ item.gvideo }}</div>
+            <el-button @click="buyGame(item)">{{ item.gname }}</el-button>
           </el-tooltip>
           <div class="goods-list-card-body">
             <div class="goods-list-tag-group">
               <el-tag v-if="item.isRecommend" hit type="success">推荐</el-tag>
               <el-tag v-if="item.status === 0" hit type="danger">缺货</el-tag>
             </div>
-            <div class="demo-image">
+            <div class="demo-image" @click="buyGame(item)">
               <el-image style="width: 100px; height: 100px" :src="item.gpic" />
             </div>
             <div class="goods-list-title">{{ item.title }}</div>
             <div class="goods-list-description">{{ item.description }}</div>
             <div class="goods-list-price">
-              <span>¥ {{ item.gprice }} 元</span>
+              <span @click="buyGame(item)">¥ {{ item.gprice }} 元</span>
             </div>
             <div>
               <el-button type="primary" size="mini" @click="buyGame(item)">

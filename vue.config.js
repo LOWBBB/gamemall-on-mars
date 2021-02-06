@@ -47,6 +47,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    disableHostCheck: true,
     // before: require('./mock/mock-server.js')
   },
 

@@ -92,7 +92,7 @@ export default {
       loginForm: {
         username: 'admin',
         password: '123456',
-        radio: 'user'
+        radio: 'user',
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],

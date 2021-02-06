@@ -143,7 +143,7 @@
               message: '添加成功！',
               type: 'success'
             });
-            vm.$router.push("/example/users");
+            vm.$router.push("/dashboard");
           }
           // console.log(resp);
         })

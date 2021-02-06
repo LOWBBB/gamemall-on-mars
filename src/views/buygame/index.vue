@@ -25,6 +25,9 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit">确认购买</el-button>
       </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="backToGoosList">返回</el-button>
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -108,6 +111,10 @@ export default {
         }
         console.log(resp)
       })
+    },
+    backToGoosList() {
+      var vm = this
+      vm.$router.push("/mall/goodsList");
     }
   }
 }

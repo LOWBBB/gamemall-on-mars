@@ -53,8 +53,12 @@
         var uid = sessionStorage.getItem("id");
         this.axios({
           method: 'POST',
-          url: '/userController/user/'+ uid +'/chargeMoney/'+this.money
+          url: '/userController/user/'+ uid +'/chargeMoney/'+this.money+'?total_amount='+this.money
         }).then(function(resp) {
+          var div = document.createElement('div');
+          div.innerHTML = resp.data;
+          document.body.appendChild(div);
+          document.forms.punchout_form.submit();  //执行submit表单提交，让页面重定向，跳转到支付宝页面
           console.log("chargemoney resp")
           console.log(resp)
           if (resp.data.code === 200) {

@@ -4,6 +4,7 @@ const getters = {
   token: state => state.user.token,
   avatar: state => state.user.avatar,
   name: state => state.user.name,
+  umoney: state => state.user.umoney,
   // 添加roles
   roles: state => state.user.roles,
   // 动态路由

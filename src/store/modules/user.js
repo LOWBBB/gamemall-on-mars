@@ -8,7 +8,8 @@ const getDefaultState = () => {
     name: '',
     avatar: '',
     roles: [],
-    id: ''
+    id: '',
+    umoney: '',
   }
 }
 
@@ -32,6 +33,9 @@ const mutations = {
   },
   SET_ID: (state, id) => {
     state.id = id
+  },
+  SET_UMONEY: (state, umoney) => {
+    state.umoney = umoney
   }
 }
 
@@ -63,12 +67,14 @@ const actions = {
           return reject('验证失败，请重新登录')
         }
 
-        const { roles, name, avatar, id } = data
+        const { roles, name, avatar, id, umoney } = data
         sessionStorage.setItem("id", id)
         console.log('userid +++++++' + sessionStorage.getItem("id"))
+        console.log('umoney +++++++' + sessionStorage.getItem("umoney"))
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
+        commit('SET_UMONEY', umoney)
         resolve(data)
       }).catch(error => {
         reject(error)
