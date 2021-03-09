@@ -131,7 +131,7 @@ export default {
           // if (role === '1'){
           // window.alert('user role ---' + role)
           this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
+            this.$router.push({ path:  '/' })
             this.loading = false
           }).catch(() => {
             this.loading = false
