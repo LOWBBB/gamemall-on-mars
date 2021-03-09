@@ -18,7 +18,7 @@
       <el-col v-for="(item, index) in list" :key="index" :xs="24" :sm="8" :md="8" :lg="8" :xl="6">
         <el-card :body-style="{ padding: '0px' }" shadow="hover" >
           <el-tooltip placement="top">
-            <div slot="content">{{ item.gtype }}<br>{{ item.gvideo }}</div>
+            <div slot="content">{{ item.gtype }}</div>
             <el-button @click="buyGame(item)">{{ item.gname }}</el-button>
           </el-tooltip>
           <div class="goods-list-card-body">

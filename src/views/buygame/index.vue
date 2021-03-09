@@ -11,6 +11,9 @@
       <el-form-item label="游戏价格">
         <div class="gameText">{{game.gprice}}元</div>
       </el-form-item>
+      <el-form-item label="游戏简介">
+        <div class="gameText">{{game.gvideo}}</div>
+      </el-form-item>
       <el-form-item label="游戏类型">
         <div class="gameText">{{game.gtype}}</div>
       </el-form-item>
