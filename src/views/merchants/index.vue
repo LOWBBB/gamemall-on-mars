@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div align="right">
-      <el-button type="success" @click="adduser()">添加用户</el-button>
+      <el-button type="success" @click="addMerchant()">添加商家</el-button>
     </div>
     <el-table :data="list" border fit highlight-current-row>
       <el-table-column align="center" label="序号" width="95">
@@ -9,9 +9,9 @@
           {{ scope.$index+1 }}
         </template>
       </el-table-column>
-      <el-table-column label="用户ID" width="95">
+      <el-table-column label="商家ID" width="95">
         <template slot-scope="scope">
-          {{ scope.row.uid }}
+          {{ scope.row.mcid }}
         </template>
       </el-table-column>
       <!-- <el-table-column label="用户图片" width="115">
@@ -21,32 +21,32 @@
           </div>
         </template>
       </el-table-column> -->
-      <el-table-column label="用户姓名" width="195">
+      <el-table-column label="商家名称" width="195">
         <template slot-scope="scope">
-          {{ scope.row.uname }}
+          {{ scope.row.mname }}
         </template>
       </el-table-column>
-      <el-table-column label="用户性别" width="95">
+      <el-table-column label="商家销量" width="95">
         <template slot-scope="scope">
-          {{ scope.row.usex }}
+          {{ scope.row.msold }}
         </template>
       </el-table-column>
-      <el-table-column label="用户生日" width="195">
+      <el-table-column label="商家邮箱" width="195">
         <template slot-scope="scope">
-          {{ scope.row.ubirth }}
+          {{ scope.row.memail }}
         </template>
       </el-table-column>
-      <el-table-column label="用户余额" width="95">
+      <el-table-column label="商家简介" width="95">
         <template slot-scope="scope">
-          {{ scope.row.umoney }}
+          {{ scope.row.briefInfo }}
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="edituser(scope.row.uid)">
+          <el-button type="primary" size="mini" @click="editMerchant(scope.row.mcid)">
             编辑
           </el-button>
-          <el-button size="mini" type="danger" @click="deluser(scope.row.uid)">
+          <el-button size="mini" type="danger" @click="delMerchant(scope.row.mcid)">
             删除
           </el-button>
         </template>
@@ -88,50 +88,24 @@
         var gpic = '';
         this.axios({
           method: 'GET',
-          url: '/userController/users/page/json?currPage=' + vm.listQuery.page + '&pageSize=' + vm.listQuery.limit
+          url: '/merchantController/merchants/page?currPage=' + vm.listQuery.page + '&pageSize=' + vm.listQuery.limit
         }).then(function(resp) {
           console.log(resp);
           vm.list = resp.data.data;
           console.log(vm.list)
           vm.total = resp.data.obj.itemCount;
-          for (var i = 0; i < vm.list.length; i++) {
-            var chagegpic = null;
-            // console.log("vm.list[i]======"+vm.list[i].gpic)
-            // 日期格式转换
-            if(vm.list[i].ubirth != null){
-              vm.list[i].ubirth = vm.$moment(vm.list[i].ubirth).format("YYYY-MM-DD hh:mm:ss");
-            }
-            console.log("vm.list[i].ubirth======"+vm.list[i].ubirth)
-            // 图片的路径设置
-            if (vm.list[i].gpic != null && vm.list[i].gpic != '') {
-              chagegpic = vm.list[i].gpic
-              // console.log("赋值成功" + chagegpic);
-              // console.log(vm.list[i].gpic + "   " + vm.list.length)
-            }
-          }
-          // vm.url = require(gpic);
         })
       },
-      fetchData() {
-        var vm = this;
-        this.axios({
-          method: 'GET',
-          url: '/userController/users'
-        }).then(function(resp) {
-          console.log(resp)
-          vm.list = resp.data.data
-        })
+      editMerchant(mcid) {
+        this.$router.push("/editmerchant/index/" + mcid);
       },
-      edituser(uid) {
-        this.$router.push("/edituser/index/" + uid);
-      },
-      deluser(uid) {
+      delMerchant(mcid) {
         var vm = this;
         this.axios({
           method: 'POST',
-          url: '/userController/user/delete?uid=' + uid
+          url: '/merchantController/merchant/delete?mcid=' + mcid
         }).then(function(resp) {
-          vm.$router.push("/example/users");
+          vm.$router.push("/example/merchants");
           console.log(resp)
           if (resp.status == 200) {
             vm.$message({
@@ -144,8 +118,8 @@
           vm.$message.error('删除失败')
         })
       },
-      adduser() {
-        this.$router.push("/adduser/index");
+      addMerchant() {
+        this.$router.push("/addmerchant/index");
       }
     }
   }

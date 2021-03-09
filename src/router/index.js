@@ -141,6 +141,34 @@ export const constantRoutes = [{
       }
     }]
   },
+  {
+    path: '/editmerchant',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index/:mcid',
+      name: 'editmerchant',
+      component: () => import('@/views/editmerchant/index'),
+      meta: {
+        title: '编辑商家',
+        icon: 'form'
+      }
+    }]
+  },
+  {
+    path: '/addmerchant',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index',
+      name: 'addmerchant',
+      component: () => import('@/views/addmerchant/index'),
+      meta: {
+        title: '添加商家',
+        icon: 'form'
+      }
+    }]
+  },
 // {
 //   path: '/mall',
 //   component: Layout,
@@ -163,7 +191,6 @@ export const constantRoutes = [{
 //     }
 //   ]
 // },
-
   {
     path: '/404',
     component: () => import('@/views/404'),
