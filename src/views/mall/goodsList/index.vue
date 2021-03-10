@@ -2,16 +2,16 @@
   <div class="goods-list-container">
     <vab-query-form>
       <vab-query-form-right-panel :span="24">
-<!--        <el-form ref="form" :model="queryForm" :inline="true" @submit.native.prevent>-->
-<!--          <el-form-item>-->
-<!--            <el-input v-model="queryForm.title" placeholder="商品名称" />-->
-<!--          </el-form-item>-->
-<!--          <el-form-item>-->
-<!--            <el-button icon="el-icon-search" type="primary" native-type="submit" @click="handleQuery">-->
-<!--              查询-->
-<!--            </el-button>-->
-<!--          </el-form-item>-->
-<!--        </el-form>-->
+        <el-form ref="form" :model="queryForm" :inline="true" @submit.native.prevent>
+          <el-form-item>
+            <el-input v-model="queryForm.title" placeholder="游戏名称" />
+          </el-form-item>
+          <el-form-item>
+            <el-button icon="el-icon-search" type="primary" native-type="submit" @click="handleQuery">
+              查询
+            </el-button>
+          </el-form-item>
+        </el-form>
       </vab-query-form-right-panel>
     </vab-query-form>
     <el-row :gutter="20">
@@ -49,7 +49,7 @@
       :total="total"
       :page.sync="queryForm.pageNo"
       :limit.sync="queryForm.pageSize"
-      @pagination="getList"
+      @pagination="fetchData"
     />
   </div>
 </template>
@@ -65,7 +65,6 @@ export default {
   data() {
     return {
       userId: '',
-      total: 0,
       queryForm: {
         pageNo: 1,
         pageSize: 10,
@@ -114,12 +113,20 @@ export default {
     },
     fetchData() {
       var vm = this
+      var gname = "null";
+      if (vm.queryForm.title.length > 0){
+        gname = vm.queryForm.title
+      }
       this.axios({
         method: 'GET',
-        url: '/gameController/games'
+        url: '/gameController/search/'+ gname +'/'+vm.queryForm.pageNo+'/'+vm.queryForm.pageSize
       }).then(function(resp) {
-        console.log('fetchData ---------' + resp)
-        vm.list = resp.data.data
+        console.log('fetchData ---------' + resp.data.length)
+        console.log(resp.data)
+        if (gname != "null"){
+          vm.total = resp.data.length
+        }
+        vm.list = resp.data
       })
     },
     // 购买游戏
