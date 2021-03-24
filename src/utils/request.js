@@ -35,7 +35,7 @@ service.interceptors.response.use(
   /**
    * If you want to get http information such as headers or status
    * Please return  response => response
-  */
+   */
 
   /**
    * Determine the request status by custom code
@@ -66,7 +66,18 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+      if (res.code === 444 || res.code === 333 || res.code === 445){
+        console.log("##############res#############")
+        console.log(res)
+        console.log("##############message#############")
+        console.log(res.msg)
+        Message({
+          message: res.msg,
+          type: 'error',
+          duration: 3 * 1000
+        })
+      }
+      return Promise.reject(new Error(res.msg || 'Error'))
     } else {
       return res
     }

@@ -93,26 +93,7 @@ export const constantRoutes = [{
       }
     }]
   },
-// {
-//   path: '/example',
-//   component: Layout,
-//   redirect: '/example/table',
-//   name: 'Example',
-//   meta: {
-//     title: '用户管理',
-//     icon: 'el-icon-s-help'
-//   },
-//   children: [{
-//     path: 'users',
-//     name: 'Uames',
-//     component: () => import('@/views/users/index'),
-//     meta: {
-//       title: '用户列表',
-//       icon: 'user'
-//     }
-//   }
-//   ]
-// },
+
   {
     path: '/edituser',
     component: Layout,
@@ -169,28 +150,7 @@ export const constantRoutes = [{
       }
     }]
   },
-// {
-//   path: '/mall',
-//   component: Layout,
-//   redirect: 'noRedirect',
-//   name: 'Mall',
-//   meta: {
-//     title: '商城',
-//     icon: 'shopping-cart',
-//     permissions: ['admin']
-//   },
-//
-//   children: [
-//     {
-//       path: 'goodsList',
-//       name: 'GoodsList',
-//       component: () => import('@/views/mall/goodsList/index'),
-//       meta: {
-//         title: '商品列表'
-//       }
-//     }
-//   ]
-// },
+
   {
     path: '/404',
     component: () => import('@/views/404'),
@@ -273,27 +233,29 @@ export const asyncRoutes = [
     }
     ]
   },
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: {
-      title: '用户管理',
-      icon: 'el-icon-s-help',
-      roles: ['admin']
-    },
-    children: [{
-      path: 'merchants',
-      name: 'Merchants',
-      component: () => import('@/views/merchants'),
-      meta: {
-        title: '商家列表',
-        icon: 'merchant'
-      }
-    }
-    ]
-  },
+  // // 此处功能没写好 暂时注释
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/table',
+  //   name: 'Example',
+  //   meta: {
+  //     title: '用户管理',
+  //     icon: 'el-icon-s-help',
+  //     roles: ['admin']
+  //   },
+  //   children: [{
+  //     path: 'merchants',
+  //     name: 'Merchants',
+  //     component: () => import('@/views/merchants'),
+  //     meta: {
+  //       title: '商家列表',
+  //       icon: 'merchant'
+  //     }
+  //   }
+  //   ]
+  // },
+  // 此处功能没写好 暂时注释
   // {
   //   path: '/chargemoney',
   //   component: Layout,
