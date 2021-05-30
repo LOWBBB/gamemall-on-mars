@@ -63,6 +63,7 @@
           console.log(resp)
           if (resp.data.code === 200) {
             vm.$message.success('充值成功!')
+            // vm.$router.push("/mall/goodsList")
           }
           // console.log(resp);
         })

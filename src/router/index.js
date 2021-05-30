@@ -103,7 +103,7 @@ export const constantRoutes = [{
       name: 'edituser',
       component: () => import('@/views/edituser/index'),
       meta: {
-        title: '编辑用户',
+        title: '编辑玩家',
         icon: 'form'
       }
     }]
@@ -117,7 +117,7 @@ export const constantRoutes = [{
       name: 'adduser',
       component: () => import('@/views/adduser/index'),
       meta: {
-        title: '添加用户',
+        title: '添加玩家',
         icon: 'form'
       }
     }]
@@ -178,7 +178,7 @@ export const asyncRoutes = [
       meta: {
         title: '游客注册',
         icon: 'form',
-        roles: ['user', 'admin']
+        roles: ['user']
       }
     }]
   },
@@ -218,7 +218,7 @@ export const asyncRoutes = [
     redirect: '/example/table',
     name: 'Example',
     meta: {
-      title: '用户管理',
+      title: '玩家管理',
       icon: 'el-icon-s-help',
       roles: ['admin']
     },
@@ -227,57 +227,56 @@ export const asyncRoutes = [
       name: 'Uames',
       component: () => import('@/views/users/index'),
       meta: {
-        title: '用户列表',
+        title: '玩家列表',
         icon: 'user'
       }
     }
     ]
   },
-  // // 此处功能没写好 暂时注释
-  // {
-  //   path: '/example',
-  //   component: Layout,
-  //   redirect: '/example/table',
-  //   name: 'Example',
-  //   meta: {
-  //     title: '用户管理',
-  //     icon: 'el-icon-s-help',
-  //     roles: ['admin']
-  //   },
-  //   children: [{
-  //     path: 'merchants',
-  //     name: 'Merchants',
-  //     component: () => import('@/views/merchants'),
-  //     meta: {
-  //       title: '商家列表',
-  //       icon: 'merchant'
-  //     }
-  //   }
-  //   ]
-  // },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: {
+      title: '玩家管理',
+      icon: 'el-icon-s-help',
+      roles: ['admin']
+    },
+    children: [{
+      path: 'merchants',
+      name: 'Merchants',
+      component: () => import('@/views/merchants'),
+      meta: {
+        title: '商家列表',
+        icon: 'merchant'
+      }
+    }
+    ]
+  },
   // 此处功能没写好 暂时注释
-  // {
-  //   path: '/chargemoney',
-  //   component: Layout,
-  //   redirect: 'noRedirect',
-  //   name: 'ChargeMoney',
-  //   meta: {
-  //     title: '用户充值',
-  //     icon: 'el-icon-s-help',
-  //     roles: ['user']
-  //   },
-  //
-  //   children: [
-  //     {
-  //       path: 'chargemoney',
-  //       name: 'Chargemoney',
-  //       component: () => import('@/views/chargemoney/index'),
-  //       meta: {
-  //         title: '用户充值'
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/chargemoney',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'ChargeMoney',
+    meta: {
+      title: '玩家充值',
+      icon: 'el-icon-s-help',
+      roles: ['user']
+    },
+
+    children: [
+      {
+        path: 'chargemoney',
+        name: 'Chargemoney',
+        component: () => import('@/views/chargemoney/index'),
+        meta: {
+          title: '玩家充值'
+        }
+      }
+    ]
+  },
   {
     path: '/mall',
     component: Layout,
@@ -287,7 +286,7 @@ export const asyncRoutes = [
       title: '商城',
       icon: 'goods',
       permissions: ['admin'],
-      roles: ['user', 'admin']
+      roles: ['user', 'merchant']
     },
 
     children: [

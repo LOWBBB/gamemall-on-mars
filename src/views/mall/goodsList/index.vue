@@ -49,7 +49,7 @@
       :total="total"
       :page.sync="queryForm.pageNo"
       :limit.sync="queryForm.pageSize"
-      @pagination="fetchData"
+      @pagination="getList"
     />
   </div>
 </template>
@@ -113,6 +113,13 @@ export default {
     },
     fetchData() {
       var vm = this
+
+      if (vm.queryForm.title == ''){
+        console.log('vm.queryForm.title ---------' + vm.queryForm.title)
+        vm.getList()
+        return ;
+      }
+
       var gname = "null";
       if (vm.queryForm.title.length > 0){
         gname = vm.queryForm.title
@@ -124,6 +131,7 @@ export default {
         console.log('fetchData ---------' + resp.data.length)
         console.log(resp.data)
         if (gname != "null"){
+          // console.log('fetchData ---------' + resp.data.length)
           vm.total = resp.data.length
         }
         vm.list = resp.data

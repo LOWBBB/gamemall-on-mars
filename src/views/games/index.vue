@@ -2,7 +2,10 @@
   <div class="app-container">
     <div align="right">
       <el-button type="success" @click="addgame()">添加游戏</el-button>
+      <el-button type="success" @click="getListByPrice">价格排序</el-button>
+      <el-button type="success" @click="getListByScore">分值排序</el-button>
     </div>
+
     <el-table :data="list" border fit highlight-current-row>
       <el-table-column align="center" label="序号" width="95">
         <template slot-scope="scope">
@@ -106,16 +109,45 @@
           // vm.url = require(gpic);
         })
       },
-      fetchData() {
+
+      getListByPrice() {
         var vm = this;
+        var gpic = '';
         this.axios({
           method: 'GET',
-          url: '/gameController/games'
+          url: '/gameController/games/page/price?currPage=' + vm.listQuery.page + '&pageSize=' + vm.listQuery.limit
         }).then(function(resp) {
-          console.log(resp)
-          vm.list = resp.data.data
+          console.log(resp);
+          vm.list = resp.data.data;
+          vm.total = resp.data.obj.itemCount;
+          for (var i = 0; i < vm.listQuery.limit; i++) {
+            var chagegpic = null;
+            if (vm.list[i].gpic != null && vm.list[i].gpic != '') {
+              chagegpic = vm.list[i].gpic
+            }
+          }
         })
       },
+
+      getListByScore() {
+        var vm = this;
+        var gpic = '';
+        this.axios({
+          method: 'GET',
+          url: '/gameController/games/page/score?currPage=' + vm.listQuery.page + '&pageSize=' + vm.listQuery.limit
+        }).then(function(resp) {
+          console.log(resp);
+          vm.list = resp.data.data;
+          vm.total = resp.data.obj.itemCount;
+          for (var i = 0; i < vm.listQuery.limit; i++) {
+            var chagegpic = null;
+            if (vm.list[i].gpic != null && vm.list[i].gpic != '') {
+              chagegpic = vm.list[i].gpic
+            }
+          }
+        })
+      },
+
       editgame(gid) {
         this.$router.push("/editgame/index/" + gid);
       },
